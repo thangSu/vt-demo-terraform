@@ -16,39 +16,26 @@ resource "aws_iam_policy" "db_policy" {
       ],
       "Effect": "Allow",
       "Resource": "*"
-    },
-    {
-      "Sid": "",
-      "Resource": "*",
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ],
-      "Effect": "Allow"
     }
   ]
 })
 }
 
 resource "aws_iam_role" "db_role" {
-    name = "db_role"
-    assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "sts:AssumeRole"
-            ],
-            "Principal": {
-                "Service": [
-                    "lambda.amazonaws.com"
-                ]
-            }
+  name = "db_role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "lambda.amazonaws.com"
         }
+      },
     ]
-    })
+  })
 }
 resource "aws_iam_role_policy_attachment" "db_rpa" {
     role = aws_iam_role.db_role.name
