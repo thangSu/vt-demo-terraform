@@ -2,13 +2,14 @@ import json
 import boto3
 def lambda_handler(event, context):
     dynamodb=boto3.resource('dynamodb')
-    table=dynamodb.Table('students')
+    table=dynamodb.Table('student')
     res= table.put_item(
         Item={
-            'id': event["params"]["querystring"]["id"],
-            'name': event["params"]["querystring"]["name"]
+            'id': event['queryStringParameters']['id'],
+            'studentname': event['queryStringParameters']['studentname']
         }
         )
     return {
-        'statusCode': res,
+    'statusCode': 200,
+    'body': json.dumps(res),
     }

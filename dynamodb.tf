@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "basic-dynamodb-table"  {
-    name     = "students"
+    name     = "student"
     hash_key = "id"
     billing_mode = "PROVISIONED"
     read_capacity = 5
@@ -7,9 +7,9 @@ resource "aws_dynamodb_table" "basic-dynamodb-table"  {
 
     attribute {
       name = "id"
-      type = "N"
+      type = "S"
     }
     tags = {
-        Name = "students"
+        Name = "student"
     }
 }

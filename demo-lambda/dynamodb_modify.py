@@ -4,16 +4,16 @@ import boto3
 dynamodb=boto3.resource('dynamodb')
 
 def lambda_handler(event, context):
-    primary_key={"studentcode": event["studentcode"]}
-    table = dynamodb.Table("students")
+    primary_key={"id": event['queryStringParameters']['id']}
+    table = dynamodb.Table("student")
     res = table.update_item(
         Key=primary_key,
-        UpdateExpression="SET name= :name, class= :class",
+        UpdateExpression='SET studentname= :studentname, studentclass= :studentclass',
         ExpressionAttributeValues={
-            ":name": event["params"]["querystring"]["name"],
-            ":class" : event["params"]["querystring"]["class"]
+            ':studentname' : event['queryStringParameters']['studentname'],
+            ':studentclass' : event['queryStringParameters']['studentclass']
         })
-    res1 = table.get_item(Key = primary_key)
     return {
-        'check_result': res1['Item']
+    'statusCode': 200,
+    'body': json.dumps(event),
     }
