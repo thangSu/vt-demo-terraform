@@ -10,8 +10,8 @@ def lambda_handler(event, context):
         Key=primary_key,
         UpdateExpression='SET studentname= :studentname, studentclass= :studentclass',
         ExpressionAttributeValues={
-            ':studentname' : event['queryStringParameters']['studentname'],
-            ':studentclass' : event['queryStringParameters']['studentclass']
+            ':studentname' : event['body']['studentname'],
+            ':studentclass' : event['body']['studentclass']
         })
     return {
     'statusCode': 200,

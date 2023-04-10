@@ -13,5 +13,5 @@ variable "api_res_path"{
 }
 variable "api_method" {
     type = list 
-    default =["GET","DELETE","PUT", "POST"]
+    default =["GET","DELETE","POST", "PUT"]
 }
