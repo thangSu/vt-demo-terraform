@@ -10,5 +10,5 @@ def lambda_handler(event, context):
     res = table.get_item(Key=primary_key)
     return {
     'statusCode': 200,
-    'body': json.dumps(res["Item"]),
+    'body': json.dumps(res),
     }

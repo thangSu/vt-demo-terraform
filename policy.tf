@@ -11,7 +11,6 @@ resource "aws_iam_policy" "db_policy" {
         "dynamodb:GetItem",
         "dynamodb:PutItem",
         "dynamodb:Query",
-        "dynamodb:Scan",
         "dynamodb:UpdateItem"
       ],
       "Effect": "Allow",
