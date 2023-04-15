@@ -15,5 +15,5 @@ variable "source_file" {
 }
 
 variable "output_path" {
-    type = list
+    type = list   
 }
