@@ -11,4 +11,5 @@ phases:
       - ./install-terraform.sh
   build:
     commands:
+      - cd ..
       - ./apply-terraform.sh
