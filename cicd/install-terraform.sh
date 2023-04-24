@@ -4,16 +4,8 @@
 sudo yum update
 
 # Install required packages
-sudo yum install -y curl unzip
+sudo yum install -y yum-utils
 
-# Download Terraform binary
-curl -O https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
 
-# Unzip Terraform binary
-unzip terraform_1.0.11_linux_amd64.zip
-
-# Move Terraform binary to /usr/local/bin directory
-sudo mv terraform /usr/local/bin/
-
-# Verify Terraform installation
-terraform --version
+sudo yum -y install terraform
