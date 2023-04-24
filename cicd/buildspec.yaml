@@ -7,8 +7,7 @@ phases:
   pre_build:
     commands:
       - cd cicd
-      - chmod +x install-terraform.sh apply-terraform.sh
-      - ./install-terraform.sh
+      - bash install-terraform.sh
   build:
     commands:
-      - ./apply-terraform.sh
+      - bash apply-terraform.sh
