@@ -13,4 +13,7 @@ resource "aws_lambda_function" "lambda" {
     role    = aws_iam_role.lambda_db_role.arn
     handler = "${var.python_file[count.index]}.lambda_handler"
     runtime = "python3.8"
+    tags = {
+      Environment = "terraform"
+    }
 }

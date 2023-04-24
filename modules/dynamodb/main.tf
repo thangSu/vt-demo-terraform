@@ -10,6 +10,7 @@ resource "aws_dynamodb_table" "student-table"  {
       type = "S"
     }
     tags = {
-        Name = "${var.table_name}"
+        Name = "${var.table_name}",
+        Environment = "terraform"
     }
 }

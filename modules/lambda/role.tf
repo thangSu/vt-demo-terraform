@@ -2,6 +2,9 @@ resource "aws_iam_policy" "lambda_db_policy" {
     name = "db_policy"
     path = "/"
     policy = data.aws_iam_policy_document.lambda_policy_document.json
+    tags = {
+      "Environment" = "terraform"
+    }
 }
 data "aws_iam_policy_document" "lambda_policy_document"{
     statement {
@@ -42,6 +45,9 @@ resource "aws_iam_role" "lambda_db_role" {
       },
     ]
   })
+      tags = {
+      "Environment" = "terraform"
+    }
 }
 resource "aws_iam_role_policy_attachment" "lambda_db_rpa" {
     role = aws_iam_role.lambda_db_role.name
