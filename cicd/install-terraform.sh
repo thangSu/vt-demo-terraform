@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Update package list
-sudo apt update
+sudo yum update
 
 # Install required packages
-sudo apt install -y curl unzip
+sudo yum install -y curl unzip
 
 # Download Terraform binary
 curl -O https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
