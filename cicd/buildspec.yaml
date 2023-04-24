@@ -5,10 +5,10 @@ phases:
       runtime-versions:
           python: 3.x
   pre_build:
-      comands:
-          - cd cicd
-          - chmod +x install-terraform.sh appy-terraform.sh
-          - ./install-terraform.sh
+    commands:
+      - cd cicd
+      - chmod +x install-terraform.sh appy-terraform.sh
+      - ./install-terraform.sh
   build:
-    commnands:
+    commands:
       - ./apply-terraform.sh
