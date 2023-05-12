@@ -26,7 +26,21 @@ module "rest-api-gateway" {
   source               = "./modules/rest_api_gateway"
   lambda_function_name = module.lambda.lambda_name
   lambda_invoke_arn    = module.lambda.lambda_invoke_arn
+
+  cognito_arn = module.cognito.cognito_arn
   depends_on = [
     module.lambda
+  ]
+}
+
+module "cognito" {
+  source = "./modules/cognito"
+  user_pool_name = "dev_user_pool"
+  email_subject = "This is a verification email from Thang"
+  client_pool_name = "dev-po-client"
+  generate_secret = false
+  cognito_domain = "dev-test-11"
+  depends_on = [ 
+    module.dynamodb
   ]
 }

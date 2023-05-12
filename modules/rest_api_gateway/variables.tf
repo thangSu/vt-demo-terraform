@@ -13,3 +13,7 @@ variable "lambda_function_name" {
 variable "lambda_invoke_arn" {
     type = list
 }
+
+variable "cognito_arn" {
+    type = string
+}

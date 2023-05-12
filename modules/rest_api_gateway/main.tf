@@ -15,9 +15,16 @@ resource "aws_api_gateway_resource" "api_resource" {
     aws_api_gateway_rest_api.api
   ]
 }
+
+resource "aws_api_gateway_authorizer" "api_authorizer" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  name = "dev-coginto-authorizer"
+  type = "COGNITO_USER_POOLS"
+  provider_arns = [var.cognito_arn]
+  identity_source = "method.request.header.Authorization"
+}
 resource "aws_api_gateway_method" "method" {
   count = length(var.api_method)
-  authorization = "NONE"
   http_method   = "${var.api_method[count.index]}"
   resource_id   = aws_api_gateway_resource.api_resource.id
   rest_api_id   = aws_api_gateway_rest_api.api.id
@@ -25,7 +32,8 @@ resource "aws_api_gateway_method" "method" {
   depends_on = [
     aws_api_gateway_resource.api_resource
   ]
-  
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.api_authorizer.id
 }
 resource "aws_api_gateway_integration" "api_integration" {
   count = length(var.api_method)
