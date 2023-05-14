@@ -8,9 +8,6 @@ phases:
     commands:
       - cd cicd
       - bash install-terraform.sh
-  plan:
-    commands:
-      - bash plan-terraform.sh
   build:
     commands:
       - bash apply-terraform.sh
